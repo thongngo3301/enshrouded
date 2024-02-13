@@ -9,8 +9,10 @@ services:
     environment:
       - PASSWORD=${SERVER_PASSWORD}
     ports:
-      - 8211:15636
-      - 27015:15637
+      - 8211:15636/udp
+      - 8211:15636/tcp
+      - 27015:15637/udp
+      - 27015:15637/tcp
     volumes:
       - /opt/stacks/enshrouded/data:/home/steam/enshrouded
   backups-enshrouded:
