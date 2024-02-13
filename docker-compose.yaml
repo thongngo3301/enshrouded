@@ -15,6 +15,7 @@ services:
       - /opt/stacks/enshrouded/data:/home/steam/enshrouded
   backups-enshrouded:
     image: mbround18/backup-cron:latest
+    container_name: enshrouded-server-backup-cron
     restart: unless-stopped
     environment:
       - SCHEDULE=0 * * * *
