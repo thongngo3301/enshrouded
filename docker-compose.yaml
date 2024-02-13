@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     environment:
-      - PASSWORD=${PASSWORD}
+      - PASSWORD=${SERVER_PASSWORD}
     ports:
       - 8211:15636
       - 27015:15637
