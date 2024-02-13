@@ -1,0 +1,28 @@
+services:
+  enshrouded:
+    image: mbround18/enshrouded-docker:latest
+    container_name: enshrouded-server
+    restart: unless-stopped
+    stop_grace_period: 30s
+    env_file:
+      - .env
+    environment:
+      - PASSWORD=${PASSWORD}
+    ports:
+      - 8211:15636
+      - 27015:15637
+    volumes:
+      - /opt/stacks/enshrouded/data:/home/steam/enshrouded
+  backups-enshrouded:
+    image: mbround18/backup-cron:latest
+    restart: unless-stopped
+    environment:
+      - SCHEDULE=0 * * * *
+      - INPUT_FOLDER=/home/steam/enshrouded/savegame
+      - OUTPUT_FOLDER=/home/steam/backups
+      - OUTPUT_USER=1000
+      - OUTPUT_GROUP=1000
+      - RETAIN_N_DAYS=2
+    volumes:
+      - /opt/stacks/enshrouded/data:/home/steam/enshrouded
+      - /opt/stacks/enshrouded/backups:/home/steam/backups
