@@ -1,13 +1,13 @@
 services:
   enshrouded:
-    image: mbround18/enshrouded-docker:latest
+    image: sknnr/enshrouded-dedicated-server:latest
     container_name: enshrouded-server
     restart: unless-stopped
     stop_grace_period: 30s
     env_file:
       - .env
     environment:
-      - PASSWORD=${SERVER_PASSWORD}
+      - SERVER_PASSWORD=${SERVER_PASSWORD}
     ports:
       - 8211:15636/udp
       - 8211:15636/tcp
